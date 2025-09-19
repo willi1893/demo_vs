@@ -5,7 +5,7 @@ metadata:
   name: vscode.bs.zbsdemopartnervscode
 type: application
 server:
-  customMiddleware: # zweiter Commit
+  customMiddleware:
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
@@ -30,3 +30,15 @@ server:
       configuration:
         component: vscode.bs.zbsdemopartnervscode
         ui5Theme: sap_horizon
+    - name: sap-fe-mockserver
+      beforeMiddleware: csp
+      configuration:
+        mountPath: /
+        services:
+          - urlPath: /sap/opu/odata/sap/ZBS_UI_SIMPLE_PARTNER_O2
+            metadataPath: ./webapp/localService/mainService/metadata.xml
+            mockdataPath: ./webapp/localService/mainService/data
+            generateMockData: true
+        annotations:
+          - localPath: ./webapp/localService/mainService/ZBS_UI_SIMPLE_PARTNER_O2_VAN.xml
+            urlPath: /sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZBS_UI_SIMPLE_PARTNER_O2_VAN',Version='0001')/$value/
