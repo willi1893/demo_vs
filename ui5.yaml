@@ -5,7 +5,7 @@ metadata:
   name: vscode.bs.zbsdemopartnervscode
 type: application
 server:
-  customMiddleware: # zweiter Commit
+  customMiddleware: # dritter Commit
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
